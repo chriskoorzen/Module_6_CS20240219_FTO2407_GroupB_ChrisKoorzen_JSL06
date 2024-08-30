@@ -3,9 +3,9 @@
 
 // Sample menu data (Consider fetching this data from a server in a real-world scenario)
 const menu = {
-    Starters: ["Garlic Bread", "Bruschetta"],
-    MainCourses: ["Margherita Pizza", "Spaghetti Carbonara"],
-    Desserts: ["Tiramisu", "Cheesecake"]
+    "Starters": [{name: "Garlic Bread", price: 21.50}, {name:" Bruschetta", price: 32}],
+    "Main Courses": [{name: "Margherita Pizza", price: 75}, {name: "Spaghetti Carbonara", price: 62}],
+    "Desserts": [{name: "Tiramisu", price: 33}, {name: "Cheesecake", price: 42.50}]
 };
 
 // Get UI references
@@ -31,7 +31,8 @@ function displayMenuItems(menu) {
 
         for (let entry of entries){
             let item = document.createElement("li");
-            item.innerText = entry;
+            item.innerText = entry.name;
+            item.setAttribute("data-price", entry.price);
 
             item.addEventListener("click", addToOrder);
 
