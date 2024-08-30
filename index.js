@@ -54,7 +54,7 @@ function addToOrder(event) {
     const selection = this.cloneNode(true);
     const removeButton = document.createElement("button");
     removeButton.innerText = "x";
-    
+
     // Tightly coupled -> we are expecting this to operate on the parent element
     removeButton.addEventListener("click", removeFromOrder);
     
@@ -72,12 +72,26 @@ function removeFromOrder(event) {
 
 }
 
+// Callback function for observing changes to order list
+function calculateDueAmount(){
+
+    let total = 0;
+    for (let order of orderSelectedUI.children){
+        
+    }
+
+    orderTotalUI.innerText = total.toFixed(2);
+}
+
 // Function to initialize the menu system
 function initMenuSystem(menu) {
+
+    orderObserver.observe(orderSelectedUI, { childList: true });
 
     displayMenuItems(menu);
 
 }
 
 // Start the menu system by calling the init function
+const orderObserver = new MutationObserver(calculateDueAmount);
 initMenuSystem(menu);
