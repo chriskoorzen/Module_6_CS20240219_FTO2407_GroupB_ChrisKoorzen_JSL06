@@ -32,6 +32,9 @@ function displayMenuItems(menu) {
         for (let entry of entries){
             let item = document.createElement("li");
             item.innerText = entry;
+
+            item.addEventListener("click", addToOrder);
+
             options.append(item);
         }
 
@@ -45,25 +48,19 @@ function displayMenuItems(menu) {
 }
 
 // Callback function for adding an item to the order
-function addToOrder(itemName) {
-    // Get the order items list and the order total element from the HTML
+function addToOrder(event) {
+    event.preventDefault();
 
-    // Create a list item for the order
+    const selection = this.cloneNode(true);
+    orderSelectedUI.append(selection);
 
-    // Set the text content of the list item to the item name
-
-    // Append the list item to the order items list
-
-    // Calculate and update the total price
-
-    // Update the text content of the order total element with the new total
 }
 
 // Function to initialize the menu system
 function initMenuSystem(menu) {
 
     displayMenuItems(menu);
-    
+
 }
 
 // Start the menu system by calling the init function
