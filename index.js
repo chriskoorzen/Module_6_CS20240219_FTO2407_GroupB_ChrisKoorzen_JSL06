@@ -31,7 +31,7 @@ function displayMenuItems(menu) {
 
         for (let entry of entries){
             let item = document.createElement("li");
-            item.innerText = entry.name;
+            item.innerHTML = `<span>${entry.name}</span><span>R ${entry.price.toFixed(2)}</span>`;
             item.setAttribute("data-price", entry.price);
 
             item.addEventListener("click", addToOrder);
@@ -53,13 +53,14 @@ function addToOrder(event) {
     event.preventDefault();
 
     const selection = this.cloneNode(true);
+    const name = selection.querySelector("span");
     const removeButton = document.createElement("button");
     removeButton.innerText = "x";
 
     // Tightly coupled -> we are expecting this to operate on the parent element
     removeButton.addEventListener("click", removeFromOrder);
     
-    selection.append(removeButton);
+    name.prepend(removeButton);
     orderSelectedUI.append(selection);
 
 }
@@ -69,7 +70,7 @@ function removeFromOrder(event) {
     event.preventDefault();
 
     // Tightly coupled -> we are expecting this to operate on the parent element
-    event.target.parentElement.remove()
+    event.target.parentElement.parentElement.remove()
 
 }
 

@@ -62,12 +62,21 @@ main {
 }
 
 #menu li, #order li {
-    margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    border-radius: 4px;
+    /* margin-bottom: 0.5rem; */
     cursor: pointer;
-    transition: background-color 0.3s ease; /* Add this for the animation */
+    transition: background-color 0.2s ease; /* Add this for the animation */
+}
+
+#menu li:hover, #order li:hover {
+    background-color: lightblue;
 }
 
 #order-total {
+    display: initial;
     font-weight: bold;
 }
 
@@ -79,4 +88,13 @@ footer {
     position: fixed; /* Add this to fix the footer at the bottom */
     bottom: 0; /* Add this to position it at the bottom */
     width: 100%; /* Add this to span the full width */
+}
+
+span {
+    display: inline-block;
+}
+
+.flexy {
+    display: flex;
+    justify-content: space-between;
 }
