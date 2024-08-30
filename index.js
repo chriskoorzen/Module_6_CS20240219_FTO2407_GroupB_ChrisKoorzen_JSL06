@@ -78,7 +78,7 @@ function calculateDueAmount(){
 
     let total = 0;
     for (let order of orderSelectedUI.children){
-        
+        total += Number.parseFloat(order.getAttribute("data-price"));
     }
 
     orderTotalUI.innerText = total.toFixed(2);
