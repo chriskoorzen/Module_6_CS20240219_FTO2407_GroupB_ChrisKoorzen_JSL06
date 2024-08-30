@@ -52,7 +52,23 @@ function addToOrder(event) {
     event.preventDefault();
 
     const selection = this.cloneNode(true);
+    const removeButton = document.createElement("button");
+    removeButton.innerText = "x";
+    
+    // Tightly coupled -> we are expecting this to operate on the parent element
+    removeButton.addEventListener("click", removeFromOrder);
+    
+    selection.append(removeButton);
     orderSelectedUI.append(selection);
+
+}
+
+// Callback function for removing an item from the order
+function removeFromOrder(event) {
+    event.preventDefault();
+
+    // Tightly coupled -> we are expecting this to operate on the parent element
+    event.target.parentElement.remove()
 
 }
 
