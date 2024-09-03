@@ -98,3 +98,7 @@ span {
     display: flex;
     justify-content: space-between;
 }
+
+.remove-btn {
+    color: red;
+}

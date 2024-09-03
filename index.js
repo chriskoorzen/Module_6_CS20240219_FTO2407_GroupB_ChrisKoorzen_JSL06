@@ -3,7 +3,7 @@
 
 // Sample menu data (Consider fetching this data from a server in a real-world scenario)
 const menu = {
-    "Starters": [{name: "Garlic Bread", price: 21.50}, {name:" Bruschetta", price: 32}],
+    "Starters": [{name: "Garlic Bread", price: 21.50}, {name:"Bruschetta", price: 32}],
     "Main Courses": [{name: "Margherita Pizza", price: 75}, {name: "Spaghetti Carbonara", price: 62}],
     "Desserts": [{name: "Tiramisu", price: 33}, {name: "Cheesecake", price: 42.50}]
 };
@@ -54,8 +54,9 @@ function addToOrder(event) {
 
     const selection = this.cloneNode(true);
     const name = selection.querySelector("span");
-    const removeButton = document.createElement("button");
-    removeButton.innerText = "x";
+    const removeButton = document.createElement("span");
+    removeButton.innerHTML = "&#11198;&nbsp;&nbsp;";        // circled cross and 2 whitespaces
+    removeButton.classList.add("remove-btn");
 
     // Tightly coupled -> we are expecting this to operate on the parent element
     removeButton.addEventListener("click", removeFromOrder);
