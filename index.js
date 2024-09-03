@@ -52,27 +52,26 @@ function displayMenuItems(menu) {
 function addToOrder(event) {
     event.preventDefault();
 
-    const selection = this.cloneNode(true);
-    const name = selection.querySelector("span");
-    const removeButton = document.createElement("span");
+    const selection = this.cloneNode(true);                 // Make a deep copy of selected item
+    const nameTag = selection.querySelector("span");
+    const removeButton = document.createElement("span");    // Create and add a "remove button" to order item
+    nameTag.prepend(removeButton);
+
+    // Define "remove button" characteristics
     removeButton.innerHTML = "&#11198;&nbsp;&nbsp;";        // circled cross and 2 whitespaces
     removeButton.classList.add("remove-btn");
+    removeButton.addEventListener("click", (event) => {
+        // Callback function for removing an item from the order
+        event.preventDefault();
 
-    // Tightly coupled -> we are expecting this to operate on the parent element
-    removeButton.addEventListener("click", removeFromOrder);
+        // Tightly coupled and dependent on HTML structure
+        // Remove the entire <li> item
+        // Not just the <span> parent (nameTag)
+        event.target.parentElement.parentElement.remove()
+    });
     
-    name.prepend(removeButton);
-    orderSelectedUI.append(selection);
 
-}
-
-// Callback function for removing an item from the order
-function removeFromOrder(event) {
-    event.preventDefault();
-
-    // Tightly coupled -> we are expecting this to operate on the parent element
-    event.target.parentElement.parentElement.remove()
-
+    orderSelectedUI.append(selection);                      // Add item to Order List
 }
 
 // Callback function for observing changes to order list
