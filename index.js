@@ -85,15 +85,11 @@ function calculateDueAmount(){
     orderTotalUI.innerText = total.toFixed(2);
 }
 
-// Function to initialize the menu system
-function initMenuSystem(menu) {
 
-    orderObserver.observe(orderSelectedUI, { childList: true });
+// Set up observer to watch for changes in OrderList
+const orderObserver = new MutationObserver(calculateDueAmount);     // Run this function on every change
+orderObserver.observe(orderSelectedUI, { childList: true });        // Watch for changes in children list
 
-    displayMenuItems(menu);
 
-}
-
-// Start the menu system by calling the init function
-const orderObserver = new MutationObserver(calculateDueAmount);
-initMenuSystem(menu);
+// Start the menu system by initializing the menu system
+displayMenuItems(menu);
