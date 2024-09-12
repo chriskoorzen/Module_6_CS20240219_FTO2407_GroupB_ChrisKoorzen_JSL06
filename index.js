@@ -64,10 +64,9 @@ function addToOrder(event) {
         // Callback function for removing an item from the order
         event.preventDefault();
 
-        // Tightly coupled and dependent on HTML structure
-        // Remove the entire <li> item
-        // Not just the <span> parent (nameTag)
-        event.target.parentElement.parentElement.remove()
+        // By using arrow functions we can create a closure
+        // referencing the correct "selection" every time.
+        selection.remove()
     });
     
 
