@@ -18,23 +18,26 @@ const orderTotalUI = document.getElementById("order-total");
 // Function to display menu items by category
 function displayMenuItems(menu) {
 
-    const newMenu = new DocumentFragment();
+    const newMenu = new DocumentFragment();                     // Top level Content container
     
-    for (const [category, entries] of Object.entries(menu)){
+    for (const [category, entries] of Object.entries(menu)){    // Create UI elements for each category
 
-        let heading = document.createElement("h2");
+        let heading = document.createElement("h2");             // Category header
         heading.innerText = category;
         newMenu.append(heading);
 
-        let options = document.createElement("ul");
+        let options = document.createElement("ul");             // Category items container
         newMenu.append(options);
 
-        for (let entry of entries){
+        for (let entry of entries){                             // Create UI elements for each item under each category
             let item = document.createElement("li");
-            item.innerHTML = `<span>${entry.name}</span><span>R ${entry.price.toFixed(2)}</span>`;
-            item.setAttribute("data-price", entry.price);
+            item.innerHTML = `
+                <span>${entry.name}</span>
+                <span>R ${entry.price.toFixed(2)}</span>`;
 
-            item.addEventListener("click", addToOrder);
+            item.setAttribute("data-price", entry.price);       // Keep reference to price on element itself as an attribute
+
+            item.addEventListener("click", addToOrder);         // Attach function that allows user to add this item to their order
 
             options.append(item);
         }
@@ -53,15 +56,14 @@ function addToOrder(event) {
     event.preventDefault();
 
     const selection = this.cloneNode(true);                 // Make a deep copy of selected item
-    const nameTag = selection.querySelector("span");
+    const nameTag = selection.querySelector("span");        // Get reference to item "name", the first span element
     const removeButton = document.createElement("span");    // Create and add a "remove button" to order item
     nameTag.prepend(removeButton);
 
     // Define "remove button" characteristics
     removeButton.innerHTML = "&#11198;&nbsp;&nbsp;";        // circled cross and 2 whitespaces
     removeButton.classList.add("remove-btn");
-    removeButton.addEventListener("click", (event) => {
-        // Callback function for removing an item from the order
+    removeButton.addEventListener("click", (event) => {     // Callback function for removing an item from the order
         event.preventDefault();
 
         // By using arrow functions we can create a closure
