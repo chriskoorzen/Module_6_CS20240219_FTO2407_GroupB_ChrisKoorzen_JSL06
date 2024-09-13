@@ -40,16 +40,16 @@ function displayMenuItems(menu) {
             item.addEventListener("click", addToOrder);         // Attach function that allows user to add this item to their order
 
             options.append(item);
-        }
+        };
 
-    }
+    };
 
     // Prefer "replace" to "append"
     // because in the event this becomes dynamic
     // we'd want to clear previous entries and update with new ones.
     menuOptionsUI.replaceChildren(...newMenu.childNodes);
 
-}
+};
 
 // Callback function for adding an item to the order
 function addToOrder(event) {
@@ -68,12 +68,12 @@ function addToOrder(event) {
 
         // By using arrow functions we can create a closure
         // referencing the correct "selection" every time.
-        selection.remove()
+        selection.remove();
     });
     
 
     orderSelectedUI.append(selection);                      // Add item to Order List
-}
+};
 
 // Callback function for observing changes to order list
 function calculateDueAmount(){
@@ -81,10 +81,10 @@ function calculateDueAmount(){
     let total = 0;
     for (let order of orderSelectedUI.children){
         total += Number.parseFloat(order.getAttribute("data-price"));
-    }
+    };
 
     orderTotalUI.innerText = total.toFixed(2);
-}
+};
 
 
 // Set up observer to watch for changes in OrderList
